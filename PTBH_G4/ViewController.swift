@@ -47,7 +47,7 @@ class ViewController: UIViewController {
         }
 
     @IBAction func btnCal(_ sender: UIButton) {
-        if checkNumber(a: tfA.text!) == true && checkNumber(a: tfB.text!) == true && checkNumber(a: tfC.text!) == true && tfA.text != "" && tfB.text != "" && tfC.text != ""
+        if checkNumber(a: tfA.text!) == true && checkNumber(a: tfB.text!) == true && checkNumber(a: tfC.text!) == true && tfA.text != "" && tfB.text != "" && tfC.text != "" && tfA.text != "." && tfB.text != "." && tfC.text != "." && tfA.text != "-" && tfB.text != "-" && tfC.text != "-"
         {
        label.text = calculate(a: Double(tfA.text!)!, b: Double(tfB.text!)!, c: Double(tfC.text!)!)
         }
@@ -92,23 +92,29 @@ class ViewController: UIViewController {
     // vuốt trái +/-
     @IBAction func ANegative(_ sender: UISwipeGestureRecognizer) {
         tfA.text = makeNegative(num: tfA.text!)
+        tfA.becomeFirstResponder()
     }
     @IBAction func BNegative(_ sender: UISwipeGestureRecognizer) {
         tfB.text = makeNegative(num: tfB.text!)
+        tfB.becomeFirstResponder()
     }
     @IBAction func CNegative(_ sender: UISwipeGestureRecognizer) {
         tfC.text = makeNegative(num: tfC.text!)
+        tfC.becomeFirstResponder()
     }
     // vuốt xuống thêm dấu chấm
     @IBAction func ADock(_ sender: UISwipeGestureRecognizer) {
         tfA.text = tfA.text! + "."
+        tfA.becomeFirstResponder()
     }
     
     @IBAction func BDock(_ sender: UISwipeGestureRecognizer) {
         tfB.text = tfB.text! + "."
+        tfB.becomeFirstResponder()
     }
     @IBAction func CDock(_ sender: UISwipeGestureRecognizer) {
         tfC.text = tfC.text! + "."
+        tfC.becomeFirstResponder()
     }
     // +/-
     func makeNegative(num: String) -> String {
@@ -117,7 +123,14 @@ class ViewController: UIViewController {
             print("num[0]=" + num.substring(to: index))
             if num.substring(to: index) != "-"
             {
-                return "-" + num
+                if num.substring(to: index) != "."
+                {
+                    return "-" + num
+                }
+                else
+                {
+                    return "-0."
+                }
             }
             else{
                 var temp = num
