@@ -37,7 +37,7 @@ class ViewController: UIViewController {
                         return false
                     }
                 }
-                else if (t.substring(to: index) < "0" || t.substring(to: index) > "9") && t.substring(to: index) != "-"
+                else if (t.substring(to: index) < "0" || t.substring(to: index) > "9") && t.substring(to: index) != "-" && t.substring(to: index) != "/"
                 {
                     return false
                 }
@@ -45,11 +45,15 @@ class ViewController: UIViewController {
             }
         return true
         }
+    func kq(tf: String) -> Double {
+        let exp: NSExpression = NSExpression(format: "1.0*"+tf)
+        return exp.expressionValue(with: nil, context: nil) as! Double
+    }
 
     @IBAction func btnCal(_ sender: UIButton) {
         if checkNumber(a: tfA.text!) == true && checkNumber(a: tfB.text!) == true && checkNumber(a: tfC.text!) == true && tfA.text != "" && tfB.text != "" && tfC.text != "" && tfA.text != "." && tfB.text != "." && tfC.text != "." && tfA.text != "-" && tfB.text != "-" && tfC.text != "-"
         {
-       label.text = calculate(a: Double(tfA.text!)!, b: Double(tfB.text!)!, c: Double(tfC.text!)!)
+       label.text = calculate(a: kq(tf: tfA.text!), b: Double(tfB.text!)!, c: Double(tfC.text!)!)
         }
         else
         {
