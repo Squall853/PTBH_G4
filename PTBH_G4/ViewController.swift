@@ -53,7 +53,7 @@ class ViewController: UIViewController {
     @IBAction func btnCal(_ sender: UIButton) {
         if checkNumber(a: tfA.text!) == true && checkNumber(a: tfB.text!) == true && checkNumber(a: tfC.text!) == true && tfA.text != "" && tfB.text != "" && tfC.text != "" && tfA.text != "." && tfB.text != "." && tfC.text != "." && tfA.text != "-" && tfB.text != "-" && tfC.text != "-"
         {
-       label.text = calculate(a: kq(tf: tfA.text!), b: Double(tfB.text!)!, c: Double(tfC.text!)!)
+       label.text = calculate(a: kq(tf: tfA.text!), b: kq(tf: tfB.text!), c: kq(tf: tfC.text!))
         }
         else
         {
